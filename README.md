@@ -1,4 +1,5 @@
 # Chat room
+### How to run on localhost:
 For Mac or Linux, please use python3
 1. python manage.py migrate
 2. python -m pip install channels_redis (if installed, please skip this step)
@@ -8,7 +9,7 @@ Mac/Linux: Please install [docker for desktop](https://www.docker.com/products/d
 5. Open browser, and type in 127.0.0.1:8000/chat/
 
 
-# Changes on AWS EC2:
+### Changes on AWS EC2:
 1. mychat/setting.py  
 From ALLOWED_HOSTS = []  
 To ALLOWED_HOSTS = ['*',]
