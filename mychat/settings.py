@@ -120,6 +120,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIR = (
+    os.path.join(os.path.join(BASE_DIR, 'static')),
+)
+
 ASGI_APPLICATION = 'mychat.routing.application'
 CHANNEL_LAYERS = {
     'default': {
