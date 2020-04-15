@@ -25,7 +25,7 @@ SECRET_KEY = 'xras^#a*xvor(+#%n+gg3w828&11d=tv=0vlfxb*val3pkmxtf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*',]
 
 
 # Application definition
@@ -125,7 +125,8 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('192.168.99.100', 6379)],
+            #"hosts": [('127.0.0.1', 6379)],
+            "hosts": [('chatroom-redis-001.evowxw.0001.use2.cache.amazonaws.com',6379)],
         },
     },
 }
