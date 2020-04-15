@@ -27,7 +27,7 @@
 							<div class="d-flex bd-highlight">
 								<div class="chat_info">
 									<span>{{ room_name|json_script:"room-name" }}</span>
-									<p>1767 Messages</p>
+                                    <span>{{ room_name }}</span>
 								</div>
 							</div>
 						</div>
@@ -67,13 +67,10 @@
 
             var row_container = document.createElement("div");
             row_container.setAttribute("class","msg_cotainer");
-            var time_span = document.createElement("div");
-            time_span.setAttribute("class","msg_time");
-            time_span.append(data.timestamp);
             row_container.append(data.message);
-            row_container.append(time_span);
-            row.appendChild(row_container);
-            document.querySelector('#chat-log').appendChild(row);
+            row.append(row_container);
+            document.querySelector('#chat-log').append(data.timestamp);
+            document.querySelector('#chat-log').append(row);
             //document.querySelector('#chat-log').value += (data.timestamp +': '+data.message + '\n');
         };
 
