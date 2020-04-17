@@ -16,5 +16,19 @@ To ALLOWED_HOSTS = ['*',]
 
      From "hosts": [('127.0.0.1', 6379)],  
      To "hosts": [('chatroom-redis-001.evowxw.0001.use2.cache.amazonaws.com',6379)],
+
+    Add
+   ```python
+    DATABASES = {
+        'default': {
+            'NAME': 'devdb',
+            'ENGINE': 'django.db.backends.mysql',
+            'USER': 'admin',
+            'PASSWORD': 'mysqltest',
+            'HOST': 'mysql-test-1.cwjtvtxof1nc.us-east-2.rds.amazonaws.com',
+            'PORT': '3306'
+        }
+    }     
+   ```
 2. Run command: python3 manage.py runserver 0.0.0.0:9000
 3. URL: http://ec2-3-16-186-223.us-east-2.compute.amazonaws.com:9000/chat/
