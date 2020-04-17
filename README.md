@@ -16,7 +16,8 @@ To ALLOWED_HOSTS = ['*',]
 
      From "hosts": [('127.0.0.1', 6379)],  
      To "hosts": [('chatroom-redis-001.evowxw.0001.use2.cache.amazonaws.com',6379)],
-Add
+
+    Add
    ```python
     DATABASES = {
         'default': {
