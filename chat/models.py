@@ -17,5 +17,5 @@ class Message(models.Model):
         return self.room.name +' @ '+ self.timestamp.strftime('%Y-%m-%d %H:%I:%S') + ': '+self.content
 
     def last_30_messages(self, room_name):
-        return Message.objects.filter(room=room_name).order_by('timestamp').all()[:30]
+        return Message.objects.filter(room=room_name).order_by('-timestamp').all()[:30][::-1]
 
