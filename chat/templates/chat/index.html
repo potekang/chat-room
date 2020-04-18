@@ -5,18 +5,67 @@
     <meta charset="utf-8"/>
     <title>Chat Rooms</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        
+        label{
+            display:inline-block;
+            width:100px;
+            margin-right:5px;
+            text-align:right;
+        }
+        .inputs{
+            position:relative;
+            left:-40px;
+        }
+        #lock {
+            width:auto;
+            max-width:10%;
+            height:auto;
+            margin-bottom: 50px;
+            position:relative;
+        }
+
+        #room-name-submit {
+            background-color: #000000; /* black */
+            border: none;
+            color: white;
+            /* padding: 15px 32px; */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        
+        
+    </style>
 
 </head>
 <body>
-    <h1 align="center">Anonymous Chat Room</h1><br />
+    {% load static %} 
+    <!-- <h1 align="center">Anonymous Chat Room</h1><br /> -->
+    <h1 align="center">Doors</h1><br/>
     <div align="center">
-        What chat room would you like to enter?<br>
-        <input id="room-name-input" type="text" width="10%" size="100"><br>
+        <!-- What chat room would you like to enter?<br> -->
+        <img id="lock" src="{% static 'keyhole.jpg' %}" >
+        <br>
+        <div  class = "inputs" alt="logo">
+            <label > Room </label>
+            <input id="room-name-input" class = "textbox" type="text"  size="20" ><br>
+            <label > Username </label>
+            <input id="username-input" class = "textbox"  type="text" size="20" ><br>
+        </div>
         <button class="btn btn-primary" id="room-name-submit" type="button">Enter</button>
     </div>
     <script>
-        document.querySelector('#room-name-input').focus();
+        //document.querySelector('#room-name-input').focus();
         document.querySelector('#room-name-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#username-input').select();
+            }
+        };
+        //document.querySelector('#username-input').focus();
+        document.querySelector('#username-input').onkeyup = function(e) {
             if (e.keyCode === 13) {  // enter, return
                 document.querySelector('#room-name-submit').click();
             }
@@ -24,7 +73,8 @@
 
         document.querySelector('#room-name-submit').onclick = function(e) {
             var roomName = document.querySelector('#room-name-input').value;
-            window.location.pathname = '/chat/' + roomName + '/';
+            var username = document.querySelector('#username-input').value;
+            window.location.pathname = '/chat/' + roomName + '/' + username;
         };
     </script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

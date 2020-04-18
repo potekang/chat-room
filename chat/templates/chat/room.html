@@ -50,7 +50,8 @@
 
     <script>
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
-
+        let segments = window.location.href.split('/');
+        const username = segments.pop() || segments.pop();
         const chatSocket = new WebSocket(
             'ws://'
             + window.location.host
@@ -62,18 +63,24 @@
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
             var row = document.createElement("div");
-
+            
             row.setAttribute("class","d-flex justify-content-start mb-4");
 
             var row_container = document.createElement("div");
             row_container.setAttribute("class","msg_cotainer");
             row_container.append(data.message);
             row.append(row_container);
-            document.querySelector('#chat-log').append(data.timestamp);
+
+            //shouldScroll = row_container.scrollTop + messages.clientHeight === messages.scrollHeight;
+            
+            document.querySelector('#chat-log').append(data.username +" "+ data.timestamp);
             document.querySelector('#chat-log').append(row);
+            //autoscroll
+            let messages = document.getElementById('chat-log');
+            document.querySelector('#chat-log').scrollTop = messages.scrollHeight;
             //document.querySelector('#chat-log').value += (data.timestamp +': '+data.message + '\n');
         };
-
+        
         chatSocket.onclose = function(e) {
             console.error('Chat socket closed unexpectedly');
         };
@@ -97,7 +104,8 @@
             const message = messageInputDom.value;
             chatSocket.send(JSON.stringify({
                 'message': message,
-                'command':'new_message'
+                'command':'new_message',
+                'username': username,
             }));
             messageInputDom.value = '';
         };
