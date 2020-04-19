@@ -25,7 +25,7 @@ SECRET_KEY = 'xras^#a*xvor(+#%n+gg3w828&11d=tv=0vlfxb*val3pkmxtf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*',]
 
 
 # Application definition
@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'mychat.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'devdb',
+        'ENGINE': 'django.db.backends.mysql',
+        'USER': 'admin',
+        'PASSWORD': 'mysqltest',
+        'HOST': 'mysql-test-1.cwjtvtxof1nc.us-east-2.rds.amazonaws.com',
+        'PORT': '3306'
     }
 }
 
@@ -129,7 +133,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('192.168.99.100', 6379)],
+            "hosts": [('chatroom-redis-001.evowxw.0001.use2.cache.amazonaws.com', 6379)],
         },
     },
 }
