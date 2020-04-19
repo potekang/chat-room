@@ -31,4 +31,4 @@ To ALLOWED_HOSTS = ['*',]
     }     
    ```
 2. Run command: python3 manage.py runserver 0.0.0.0:9000
-3. URL: http://ec2-3-16-186-223.us-east-2.compute.amazonaws.com:9000/chat/
+3. URL: nginx-1447488727.us-east-2.elb.amazonaws.com/chat/ (based on AWS Application Load Balancer)
